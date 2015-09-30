@@ -17,4 +17,13 @@ class AddressBook
     end
     @entries.insert(index, Entry.new(name, phone_number, email))
   end
+  
+  def remove_entry(name, phone_number, email)
+    @entries.each do |entry|
+      if name == entry.name
+        @entries.delete(entry)
+      else puts "I'm sorry, that name is not recognized."
+      end
+    end
+  end
 end
