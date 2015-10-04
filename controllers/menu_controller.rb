@@ -13,7 +13,8 @@ class MenuController
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
-    puts "5 - Exit"
+    puts "5 - Delete all entries *CAUTION*"
+    puts "6 - Exit"
     print "Enter your selection: "
     
     selection = gets.to_i
@@ -37,6 +38,10 @@ class MenuController
       read_csv
       main_menu
       when 5
+      system "clear"
+      detonate
+      main_menu
+      when 6
       puts "Good-bye!"
       exit(0)
       else
@@ -74,8 +79,10 @@ class MenuController
   end
   
   def delete_entry(entry)
-    @address_book.entries.delete(entry)
+    system "clear"
     puts "#{entry.name} has been deleted"
+    @address_book.entries.delete(entry)
+    main_menu
   end
   
   def edit_entry(entry)
@@ -126,6 +133,20 @@ class MenuController
       puts "#{entry_count} new entries added from #{file_name}"
     rescue
       puts "#{file_name} is not a valid CSV file, please enter the name of a valid read_csv"
+    end
+  end
+  
+  def detonate
+    puts "This destroys all entries. Continue? [y/n] "
+    choice = gets.chomp
+    
+      if choice == 'y' || choice == 'Y'
+        @address_book.entries.clear
+        system "clear"
+        main_menu
+      else
+        system "clear"
+        main_menu
     end
   end
   
@@ -181,3 +202,4 @@ class MenuController
     end
   end
 end
+
