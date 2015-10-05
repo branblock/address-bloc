@@ -63,24 +63,18 @@ class MenuController
   end
   
   def view_entry_num
-    system "clear"
-    puts "Entry Number: "
-    selection = gets.to_i
-    puts "You picked #{selection}"
+    print "Entry Number: "
+    selection = gets.chomp.to_i
       if @address_book.entries.count >= selection
-        puts @address_book.entries[selection - 1]
-      else
-        system "clear"
-        puts "Invalid input. Please enter a valid Entry Number: "
-        selection = gets.to_i
         puts "You picked #{selection}"
-      end
-          if @address_book.entries.count >= selection
-            puts @address_book.entries[selection - 1]
-          else
-            system "clear"
-            puts "Invalid input. Please choose from the Main Menu."
-          end
+				puts @address_book.entries[selection - 1]
+				puts "Press enter to return to the main menu"
+				gets.chomp
+				system "clear"
+      else
+        puts "#{selection} is invalid."
+				main_menu
+			end
 end
 
   def create_entry
