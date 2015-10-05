@@ -39,8 +39,15 @@ class MenuController
       main_menu
       when 5
       system "clear"
-      detonate
-      main_menu
+      puts "This destroys all entries. Continue? [y/n] "
+      choice = gets.chomp
+        if choice == 'y' || choice == 'Y'
+        detonate
+        system "clear"
+        main_menu
+        else
+        system "clear"
+        main_menu
       when 6
       puts "Good-bye!"
       exit(0)
@@ -133,20 +140,6 @@ class MenuController
       puts "#{entry_count} new entries added from #{file_name}"
     rescue
       puts "#{file_name} is not a valid CSV file, please enter the name of a valid read_csv"
-    end
-  end
-  
-  def detonate
-    puts "This destroys all entries. Continue? [y/n] "
-    choice = gets.chomp
-    
-      if choice == 'y' || choice == 'Y'
-        @address_book.entries.clear
-        system "clear"
-        main_menu
-      else
-        system "clear"
-        main_menu
     end
   end
   
